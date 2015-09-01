@@ -43,9 +43,9 @@ public class TicketDAODBImpl implements TicketDAO{
             }
             return alist;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -69,9 +69,9 @@ public class TicketDAODBImpl implements TicketDAO{
             }
             return alist;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -94,9 +94,9 @@ public class TicketDAODBImpl implements TicketDAO{
             }
             return alist;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
@@ -117,9 +117,9 @@ public class TicketDAODBImpl implements TicketDAO{
             conn.close();
             return count;
     	} catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 		return -1;
 	}
@@ -140,10 +140,31 @@ public class TicketDAODBImpl implements TicketDAO{
             return count;
 
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
 		return -1;
-    }    
+    }
+
+	@Override
+	public int add_ticket(Ticket ticket) {
+		try {        
+            Class.forName(DRIVER_NAME);
+            
+            Connection conn = DriverManager.getConnection(CONN_STRING);
+            conn.setAutoCommit(false);
+            PreparedStatement pstmt = conn.prepareStatement(
+            		"INSERT INTO ticket_Info (mail_account,phone_password,order_date,session_ID,people,valid,seat_list)"
+            		+" VALUES (?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            
+            
+            
+		} catch (ClassNotFoundException ex) {
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		return -1;
+	}    
 }

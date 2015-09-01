@@ -47,9 +47,9 @@ public class AllJoinDAODBImpl implements AllJoinDAO{
             }
             return alist;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllJoinDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllJoinDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
 	}
@@ -89,9 +89,9 @@ public class AllJoinDAODBImpl implements AllJoinDAO{
             }
             return alist;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllJoinDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllJoinDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
 	}
@@ -126,9 +126,9 @@ public class AllJoinDAODBImpl implements AllJoinDAO{
             }
             return alist;
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllJoinDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AllJoinDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
 	}
