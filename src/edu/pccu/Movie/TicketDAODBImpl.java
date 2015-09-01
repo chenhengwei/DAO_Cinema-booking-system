@@ -149,22 +149,39 @@ public class TicketDAODBImpl implements TicketDAO{
 
 	@Override
 	public int add_ticket(Ticket ticket) {
-		try {        
-            Class.forName(DRIVER_NAME);
-            
+
+            int count = 0;    
+          try {
+            Class.forName(DRIVER_NAME);  // 把符合的API 全部都進來 但是會有 expection , try catach 去擷取
             Connection conn = DriverManager.getConnection(CONN_STRING);
-            conn.setAutoCommit(false);
-            PreparedStatement pstmt = conn.prepareStatement(
-            		"INSERT INTO ticket_Info (mail_account,phone_password,order_date,session_ID,people,valid,seat_list)"
-            		+" VALUES (?,?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+            String query = "Insert into ticket_Info "
+                         + "(mail_account,phone_password,order_date,"
+                         + "session_ID,people,valid,seat_list)"
+            		 +" VALUES (?,?,?,?,?,?,?)";
+            PreparedStatement ppstemt = conn.prepareStatement(query);
+
+            //ppstemt.setInt(1, customer.get_C_ticket_no());
+            ppstemt.setString(1, ticket.getMail_account());
+            ppstemt.setString(2, ticket.getPhone_password());
+            ppstemt.setString(3, ticket.getOrder_date());
+            ppstemt.setInt(4, ticket.getSession_ID());
+            ppstemt.setInt(5, ticket.getPeople());
+            ppstemt.setString(6, ticket.getValid());
+            ppstemt.setString(7, ticket.getSeat_list());
+        
+            ppstemt.executeUpdate();
+            count = ppstemt.executeUpdate();
+            ppstemt.cancel();
+            conn.close();           
             
-            
-            
-		} catch (ClassNotFoundException ex) {
-            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+            return count;
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(TicketDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
-        }
-		return -1;
+            Logger.getLogger(MovieDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }      
+               
+        return -1;
+                
 	}    
 }
