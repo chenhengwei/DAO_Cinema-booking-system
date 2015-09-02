@@ -18,5 +18,5 @@ public interface TicketDAO {
     //新增訂單(包含更新座位)
     public int add_ticket(Ticket ticket);
     
-    
+    public int add_ticket_no(Ticket ticket);
 }
