@@ -118,4 +118,37 @@ public class SeatsDAODBImpl implements SeatDAO{
          return "N";
     }
 
+	@Override
+	public int update_Seats(Seats seats) {
+		int count = 0;
+		try {
+            Class.forName(DRIVER_NAME);  // 把符合的API 全部都進來 但是會有 expection , try catach 去擷取
+            Connection conn = DriverManager.getConnection(CONN_STRING);
+            conn.setAutoCommit(false);            
+            
+            //更新room_seat資料表的內容
+            String  query = "UPDATE room_seat SET sold = ?,ticket_no = ? "
+                    + "WHERE room = ? AND R = ? AND S = ? AND valid = ? ";
+            PreparedStatement ppstemt = conn.prepareStatement(query);
+            ppstemt.setString(1, seats.getSold());
+            ppstemt.setInt(2, seats.getTicket_no());
+            ppstemt.setString(3, seats.getRoom());
+            ppstemt.setString(4, seats.getR_a());
+            ppstemt.setString(5, seats.getS_a());
+            ppstemt.setString(6, seats.getVaild());
+            count = ppstemt.executeUpdate();
+            
+            conn.commit();
+            conn.setAutoCommit(true);
+            ppstemt.cancel();            
+            conn.close();
+            return count;
+    	} catch (ClassNotFoundException ex) {
+            Logger.getLogger(SeatsDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(SeatsDAODBImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		return -1;
+	}
+
 }

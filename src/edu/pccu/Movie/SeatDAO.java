@@ -17,4 +17,6 @@ public interface SeatDAO  {
     public int add_Seats(Seats seats);
     
     public String find_Seat_by_RS(String R_a,String S_a);
+    //新增訂單時更新座位sold為'Y'
+    public int update_Seats(Seats seats);
 }

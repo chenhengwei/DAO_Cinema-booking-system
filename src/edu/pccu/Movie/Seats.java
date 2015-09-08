@@ -39,4 +39,29 @@ public class Seats {
         this.S_a = S_a;
         this.sold = sold;
     }
+    //Getter
+    public String getRoom() {
+        return room;
+    }
+
+    public String getR_a() {
+        return R_a;
+    }
+
+    public String getS_a() {
+        return S_a;
+    }
+
+    public String getSold() {
+        return sold;
+    }
+
+    public String getVaild() {
+        return vaild;
+    }
+
+    public int getTicket_no() {
+        return ticket_no;
+    }
+        
 }
